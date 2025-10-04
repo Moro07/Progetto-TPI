@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Modale</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 flex flex-col items-center justify-center min-h-screen">
+
+  <!-- Bottone per aprire la modale -->
+  <button id="openModal" class="px-6 py-2 mb-4 rounded-lg bg-blue-600 hover:bg-blue-500 font-bold">
+    Apri Form
+  </button>
+
+  <!-- Modale (inizialmente nascosta) -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
+      <h2 class="text-2xl font-bold mb-4">Compila il form</h2>
+
+      <form class="space-y-4">
+        <div>
+          <label for="name" class="block mb-1">Nome</label>
+          <input type="text" id="name" placeholder="Inserisci il tuo nome"
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div>
+          <label for="email" class="block mb-1">Email</label>
+          <input type="email" id="email" placeholder="Inserisci la tua email"
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="flex justify-end space-x-2">
+          <button type="button" id="closeModal" class="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-500">Chiudi</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold">Invia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const openModalBtn = document.getElementById('openModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modal = document.getElementById('modal');
+
+    openModalBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    // Chiudi modale cliccando fuori
+    window.addEventListener('click', (e) => {
+      if(e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
