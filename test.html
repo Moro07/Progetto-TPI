@@ -1,63 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Modale</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <script src="http://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 </head>
-<body class="bg-gray-900 text-gray-100 flex flex-col items-center justify-center min-h-screen">
+<body class="bg-gray-900 text-gray-100">
 
-  <!-- Bottone per aprire la modale -->
-  <button id="openModal" class="px-6 py-2 mb-4 rounded-lg bg-blue-600 hover:bg-blue-500 font-bold">
-    Apri Form
-  </button>
+      
 
-  <!-- Modale (inizialmente nascosta) -->
-  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
-      <h2 class="text-2xl font-bold mb-4">Compila il form</h2>
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <a href="#" class="flex  items-start p-4 space-x-4">
+        <h5 id="title-issue" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Titolo Issue</h5>
+        <span id="issue-status" class="#"></span>
+    </a>
+    
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Descrizione</p>
+    <div class="flex items-center space-x-4">
+    <a href="#" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        User
+    </a>
+    <a >
+      <button
+  class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium  rounded-lg group
+         bg-gradient-to-br from-blue-600 via-blue-500 to-blue-900
+         group-hover:from-blue-700 group-hover:via-blue-300 group-hover:to-blue-900
+         dark:text-white dark:hover:text-blue-100
+         focus:outline-none focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-400
+         focus-visible:ring focus-visible:ring-blue-400"
+>
+  <span
+    class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-blue-900 rounded-md
+           group-hover:bg-transparent group-hover:dark:bg-transparent"
+  >
+    Sposta
+  </span>
+</button>
+    </a>
+    <a>
+        <button
+  class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium  rounded-lg group
+         bg-gradient-to-br from-red-600 via-red-500 to-red-900
+         group-hover:from-red-700 group-hover:via-red-300 group-hover:to-red-900
+         dark:text-white dark:hover:text-red-100
+         focus:outline-none focus:ring-4 focus:ring-red-100 dark:focus:ring-red-400
+         focus-visible:ring focus-visible:ring-red-400"
+>
+  <span
+    class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-red-900 rounded-md
+           group-hover:bg-transparent group-hover:dark:bg-transparent"
+  >
+    Elimina
+  </span>
+</button>
 
-      <form class="space-y-4">
-        <div>
-          <label for="name" class="block mb-1">Nome</label>
-          <input type="text" id="name" placeholder="Inserisci il tuo nome"
-            class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-
-        <div>
-          <label for="email" class="block mb-1">Email</label>
-          <input type="email" id="email" placeholder="Inserisci la tua email"
-            class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-
-        <div class="flex justify-end space-x-2">
-          <button type="button" id="closeModal" class="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-500">Chiudi</button>
-          <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold">Invia</button>
-        </div>
-      </form>
+    </a>
     </div>
-  </div>
 
-  <script>
-    const openModalBtn = document.getElementById('openModal');
-    const closeModalBtn = document.getElementById('closeModal');
-    const modal = document.getElementById('modal');
+ 
+    
+</div>
+<div>
 
-    openModalBtn.addEventListener('click', () => {
-      modal.classList.remove('hidden');
-    });
+  
+  <span id="priority-low" class="justify-end bg-teal-400 from-teal-500 via-teal-600 to-teal-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-teal-900">Bassa</span>
+  <span id="priority-medium" class="justify-end bg-blue-400 from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-blue-900">Media</span>
+  <span id="priority-high" class="justify-end bg-yellow-600 from-yellow-600 via-yellow-700 to-yellow-750 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 shadow-lg shadow-yellow-500/50 dark:shadow-lg dark:shadow-yellow-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-yellow-900">Alta</span>
+  <span id="priority-critical" class="justify-end bg-red-400 from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-red-900">Critica</span>
+</div>
 
-    closeModalBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-    });
 
-    // Chiudi modale cliccando fuori
-    window.addEventListener('click', (e) => {
-      if(e.target === modal) {
-        modal.classList.add('hidden');
-      }
-    });
-  </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 </html>
