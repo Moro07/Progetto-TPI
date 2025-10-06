@@ -14,21 +14,30 @@
     <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
       <h2 class="text-2xl font-bold mb-4">Crea nuova issue</h2>
 
-      <form class="space-y-4">
+      <form id="form" class="space-y-4">
         <div>
           <label for="name" class="block mb-1">Titolo Issue</label>
-          <input type="text" id="name" placeholder="Inserisci il tuo nome"
+          <input type="text" id="title" placeholder="Inserisci il titolo della issue"
             class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         <div>
+          <label for="name" class="block mb-1">Nome utente</label>
+          <input type="text" id="name" placeholder="Inserisci il tuo nome"
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <form class="max-w-sm mx-auto"><label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priorità</label>
+            <select id="priority" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Scegli una priorità</option>
+                    <option value="low">Bassa</option><option value="medium">Media</option><option value="high">Alta</option><option value="critical">Critica</option></select></form>
+        <div>
           <label for="description" class="block mb-1">Descrizione</label>
-          <textarea id="description" rows="4" placeholder="Descrivi la tua issue"
+          <textarea id="desc" rows="4" placeholder="Descrivi la tua issue"
             class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         </div>
-
+    
         <div class="flex justify-end space-x-2">
           <button type="button" id="closeModal" class="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-500">Chiudi</button>
-          <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold">Invia</button>
+          <button type="submit" id="send" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold">Invia</button>
         </div>
       </form>
     </div>
