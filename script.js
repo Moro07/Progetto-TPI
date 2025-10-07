@@ -20,21 +20,32 @@
       }
     });
 
+    //issues = [];
+    //localStorage.setItem('issues', null);
+    //document.getElementById("card-1").innerHTML = issues[0];
+
     btnSend.addEventListener('click', () => {
       const name = document.getElementById('name').value;
       const title = document.getElementById('title').value;
       const priority = document.getElementById('priority').value;
       const description = document.getElementById('desc').value;
+      const desc = document.getElementById('desc');
 
       issues.push({ name, title, priority, description });
 
       saveInLocalStorage();
-      document.getElementById("card-1").innerHTML += name + " - " + title + " - " + priority + " - " + description + "<br>";
+      updateCard();
+      desc.value = '';
       form.reset();
-      description.value = '';
       modal.classList.add('hidden');
     });
 
     function saveInLocalStorage() {
       localStorage.setItem('issues', JSON.stringify(issues));
+    }
+    
+    function updateCard() {
+      for (let i = 0; i < issues; i++)
+        document.getElementById("card-1").innerHTML = issues[i].title + "<br>" + issues[i].priority + "<br>" + issues[i].description + "<br>" + issues[i].name;
+      console.log(issues);  
     }
