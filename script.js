@@ -43,9 +43,3 @@
     function saveInLocalStorage() {
       localStorage.setItem('issues', JSON.stringify(issues));
     }
-    
-    function updateCard() {
-      for (let i = 0; i < issues; i++)
-        document.getElementById("card-1").innerHTML = issues[i].title + "<br>" + issues[i].priority + "<br>" + issues[i].description + "<br>" + issues[i].name;
-      console.log(issues);  
-    }
