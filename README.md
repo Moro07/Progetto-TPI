@@ -16,7 +16,7 @@ Creato da degli studenti dell'[itis Castelli](https://www.iiscastelli.edu.it/Pag
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Abstract_Kanban_Board.svg/330px-Abstract_Kanban_Board.svg.png)
 
 ### Implementazione
-Utilizzo di linguaggio html, javascript e css con l'ambiente di sviluppo [Visual Studio Code](https://en.wikipedia.org/wiki/Visual_Studio_Code)
+Utilizzo di linguaggio html, javascript e css con l'ambiente di sviluppo [Visual Studio Code](https://en.wikipedia.org/wiki/Visual_Studio_Code, mediante anche l'uso di framework grafici [Flowbite](https://flowbite.com)
 
 ### Verifica e validazione
 Test eseguiti su macchine locali
