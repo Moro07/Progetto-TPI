@@ -2,10 +2,15 @@
   const closeModalBtn = document.getElementById('closeModal');
   const modal = document.getElementById('modal');
   const btnSend = document.getElementById('send');
-  const btnSearch = document.getElementById('tooltipSearch');
+  const openSearch = document.getElementById('tooltipSearch');
+  const btnSearch = document.getElementById('btnSearch');
+  const closeSearch = document.getElementById('closeSearch');
   const search = document.getElementById('search');
   const form = document.getElementById('form');
+  const formSearch = document.getElementById('formSearch');
+  const btnHome = document.getElementById('home');
   let i = 0;
+  let id = 1;
   let issues = JSON.parse(localStorage.getItem('issues')) || [];
   let id = 1;
 
@@ -26,10 +31,32 @@
       }
     });
 
-    btnSearch.addEventListener('click', () => {
+    openSearch.addEventListener('click', () => {
       search.classList.remove('hidden');
     });
 
+    closeSearch.addEventListener('click', () => {
+      search.classList.add('hidden');
+      formSearch.reset();
+    });
+
+    // Chiudi ricerca cliccando fuori
+    window.addEventListener('click', (e) => {
+      if(e.target === search) {
+        search.classList.add('hidden');
+      }
+    });
+
+    btnHome.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      form.reset();
+      document.getElementById('desc').value = '';
+      search.classList.add('hidden');
+      formSearch.reset();
+    });
+
+    uploadCard();
+    insertcard(issues);
     
 
     //issues = [];
@@ -42,6 +69,9 @@
       const priority = document.getElementById('priority').value;
       const description = document.getElementById('desc').value;
 
+      issues.push({ name, title, priority, description, id });
+
+      insertcard(issues);
       issues.push({ name, title, priority, description,id });
 
       saveInLocalStorage();
@@ -49,6 +79,21 @@
       form.reset();
       modal.classList.add('hidden');
       
+    });
+
+    btnSearch.addEventListener('click', () => {
+      const name = document.getElementById('nameSearch').value;
+      const title = document.getElementById('titleSearch').value;
+
+      if(!name && !title) {
+        alert('Per favore, compila tutti i campi.');
+        return;
+      }
+
+      find();
+
+      formSearch.reset();
+      search.classList.add('hidden');
     });
 
     function saveInLocalStorage() {
