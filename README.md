@@ -17,7 +17,7 @@ Creato da degli studenti dell'[itis Castelli](https://www.iiscastelli.edu.it/Pag
 >Questa è un immagine rappresentativa del fondamento teorico alla base del progetto
 
 ### Implementazione
-Utilizzo di linguaggio html, javascript e css con l'ambiente di sviluppo [Visual Studio Code](https://en.wikipedia.org/wiki/Visual_Studio_Code, mediante anche l'uso di framework grafici [Flowbite](https://flowbite.com)
+Utilizzo di linguaggio html, javascript e css con l'ambiente di sviluppo [Visual Studio Code](https://en.wikipedia.org/wiki/Visual_Studio_Code), mediante anche l'uso di framework grafici [Flowbite](https://flowbite.com)
 
 ### Verifica e validazione
 Test eseguiti su macchine locali
