@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="script.js" defer></script>
-    <script src="http://cdn.tailwindcss.com"></script>
+    <title>Issue Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <style>
+      /* Nascondi la navbar quando un modal è aperto */
+      body:has(#modal:not(.hidden)) .bottom-navbar,
+      body:has(#search:not(.hidden)) .bottom-navbar,
+      body:has(#searchModal:not(.hidden)) .bottom-navbar {
+        display: none;
+      }
+      
+      /* Aumenta lo z-index dei modal per essere sicuri che siano sopra tutto */
+      #modal, #search, #searchModal {
+        z-index: 9999;
+      }
+    </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
-
-      <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+  
+  <!-- Modal per creare nuova issue -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
       <h2 class="text-2xl font-bold mb-4">Crea nuova issue</h2>
-
+ 
       <form id="form" class="space-y-4">
         <div>
-          <label for="name" class="block mb-1">Titolo Issue</label>
+          <label for="title" class="block mb-1">Titolo Issue</label>
           <input type="text" id="title" placeholder="Inserisci il titolo della issue"
             class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
@@ -25,16 +38,22 @@
           <input type="text" id="name" placeholder="Inserisci il tuo nome"
             class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        <form class="max-w-sm mx-auto"><label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priorità</label>
-            <select id="priority" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Scegli una priorità</option>
-                    <option value="low">Bassa</option><option value="medium">Media</option><option value="high">Alta</option><option value="critical">Critica</option></select></form>
         <div>
-          <label for="description" class="block mb-1">Descrizione</label>
+          <label for="priority" class="block mb-2 text-sm font-medium">Priorità</label>
+          <select id="priority" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option selected>Scegli una priorità</option>
+            <option value="low">Bassa</option>
+            <option value="medium">Media</option>
+            <option value="high">Alta</option>
+            <option value="critical">Critica</option>
+          </select>
+        </div>
+        <div>
+          <label for="desc" class="block mb-1">Descrizione</label>
           <textarea id="desc" rows="4" placeholder="Descrivi la tua issue"
             class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         </div>
-    
+   
         <div class="flex justify-end space-x-2">
           <button type="button" id="closeModal" class="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-500">Chiudi</button>
           <button type="submit" id="send" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold">Invia</button>
@@ -42,28 +61,22 @@
       </form>
     </div>
   </div>
-
-  <body class="bg-gray-900 text-gray-100">
-
-      <div id="search" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+ 
+  <!-- Modal per ricerca -->
+  <div id="search" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
     <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
       <h2 class="text-2xl font-bold mb-4">Cerca</h2>
 
       <form id="formSearch" class="space-y-4">
         <div>
-          <label for="name" class="block mb-1">Titolo Issue</label>
-          <input type="text" id="titleSearch" placeholder="Inserisci il titolo della issue"
-            class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <label class="block mb-1">Titolo Issue</label>
+          <input type="text" id="titleSearch" placeholder="Inserisci il titolo della issue" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         <div>
-          <label for="name" class="block mb-1">Nome utente</label>
-          <input type="text" id="nameSearch" placeholder="Inserisci il tuo nome"
-            class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <label class="block mb-1">Nome utente</label>
+          <input type="text" id="nameSearch" placeholder="Inserisci il tuo nome" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        <form class="max-w-sm mx-auto"><label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priorità</label>
-            <select id="prioritySearch" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Scegli una priorità</option>
-                    <option value="low">Bassa</option><option value="medium">Media</option><option value="high">Alta</option><option value="critical">Critica</option></select></form>
+
         <div class="flex justify-end space-x-2">
           <button type="button" id="closeSearch" class="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-500">Chiudi</button>
           <button type="submit" id="btnSearch" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold">Cerca</button>
@@ -71,83 +84,95 @@
       </form>
     </div>
   </div>
-    
 
-    <div class="flex justify-end items-start p-4 space-x-4">
-    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Backlog: <span id="backlog-counter" class="font-bold">0</span></button>    
-    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">In progress: <span id="in-progress-counter" class="font-bold">0</span></button>   
-    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Review: <span id="review-counter" class="font-bold">0</span></button>   
-    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Done: <span id="done-counter" class="font-bold">0</span></button>   
-    
-</div>
-    
-    <div class="flex flex-wrap gap-3 content-center justify-center p-4">
-  <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Backlog</h5>
-    <div id= "card1" class="font-normal text-gray-700 dark:text-gray-400"></div>
-  </a>
+  <!-- Modal per risultati ricerca -->
+  <div id="searchModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-4xl p-6 max-h-[90vh] overflow-y-auto">
+      <h2 class="text-2xl font-bold mb-4">Risultati della ricerca</h2>
+      <div id="searchResultsContent" class="space-y-4">
+        <!-- Le card appariranno qui -->
+      </div>
 
-  <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">In Progress</h5>
-    <div id= "card2"  class="font-normal text-gray-700 dark:text-gray-400"></div>
-  </a>
+      <div class="flex justify-end mt-4">
+        <button type="button" id="closeSearchModal" class="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-500">Chiudi</button>
+      </div>
+    </div>
+  </div>
 
-  <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Review</h5>
-    <div id= "card3" class="font-normal text-gray-700 dark:text-gray-400"></div>
-  </a>
-  <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Done</h5>
-    <div id= "card4" class="font-normal text-gray-700 dark:text-gray-400"></div>
-  </a>
-</div>
-
-<div class="flex flex-wrap content-center justify-center">
-<div class="fixed z-50 w-full h-16 max-w-lg bg-white border border-gray-200 rounded-full bottom-4 dark:bg-gray-700 dark:border-gray-600">
+  <!-- Contatori -->
+  <div class="flex justify-end items-start p-4 space-x-4">
+    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Backlog: <span id="backlogCounter" class="font-bold">0</span></button>    
+    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">In progress: <span id="inProgressCounter" class="font-bold">0</span></button>  
+    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Review: <span id="reviewCounter" class="font-bold">0</span></button>  
+    <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Done: <span id="doneCounter" class="font-bold">0</span></button>  
+  </div>
+   
+  <!-- Board con le colonne -->
+  <div class="flex flex-wrap gap-3 content-center justify-center p-4">
+    <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Backlog</h5>
+      <div id="card1" class="font-normal text-gray-700 dark:text-gray-400"></div>
+    </a>
+ 
+    <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">In Progress</h5>
+      <div id="card2" class="font-normal text-gray-700 dark:text-gray-400"></div>
+    </a>
+ 
+    <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Review</h5>
+      <div id="card3" class="font-normal text-gray-700 dark:text-gray-400"></div>
+    </a>
     
-    
-    <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
+    <a href="#" class="block w-full sm:w-1/6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Done</h5>
+      <div id="card4" class="font-normal text-gray-700 dark:text-gray-400"></div>
+    </a>
+  </div>
+ 
+  <!-- Barra di navigazione fissa in basso -->
+  <div class="flex flex-wrap content-center justify-center bottom-navbar">
+    <div class="fixed z-50 w-full h-16 max-w-lg bg-white border border-gray-200 rounded-full bottom-4 dark:bg-gray-700 dark:border-gray-600">
+      <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
         <button data-tooltip-target="tooltip-home" id="home" type="button" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 21V9.75z" />
-  </svg>
-            <span class="sr-only">Home</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 21V9.75z" />
+          </svg>
+          <span class="sr-only">Home</span>
         </button>
         <div id="tooltip-home" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-            Home
-            <div class="tooltip-arrow" data-popper-arrow></div>
+          Home
+          <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
-        
-        
+       
         <div class="flex items-center justify-center">
-            <button id="openModal" data-tooltip-target="tooltip-new" type="button" class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
-                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-                </svg>
-                <span class="sr-only">New item</span>
-            </button>
+          <button id="openModal" data-tooltip-target="tooltip-new" type="button" class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+            <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+            </svg>
+            <span class="sr-only">New item</span>
+          </button>
         </div>
         <div id="tooltip-new" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-            Create new item
-            <div class="tooltip-arrow" data-popper-arrow></div>
+          Create new item
+          <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
-        
+       
         <button data-tooltip-target="tooltip-search" type="button" id="tooltipSearch" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
-            </svg>
-            <span class="sr-only">Search</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+          </svg>
+          <span class="sr-only">Search</span>
         </button>
         <div id="tooltip-search" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
-            Search
-            <div class="tooltip-arrow" data-popper-arrow></div>
+          Search
+          <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
+      </div>
     </div>
-</div>
-</div>
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  </div>
+ 
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 </html>
