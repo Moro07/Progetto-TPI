@@ -50,6 +50,7 @@ Il sistema gestisce le issue, per ogni issue si conosce:
 L'HTML definisce lo scheletro dell'applicazione, stabilendo i punti di iniezione del codice JavaScript e rispettando il requisito di visualizzazione in colonne:
 
 Colonne Kanban: Sono stati definiti i div contenitori per ogni stato:
+
 " <div id="card1"></div> <div id="card4"></div> "
 
 Bottoni invia:
@@ -60,7 +61,9 @@ Bottoni invia:
    
 L'uso della libreria Tailwind CSS ha permesso di implementare il design responsive e l'usabilità.
 Layout Responsivo:
+
 " <div class="w-full sm:w-1/6 ...">...</div> "
+
 Colori: utilizzo di colori con sfumature per visualizzare meglio la priorità.
 " <span class="bg-red-400 ... text-red-900">Critica</span> "
 
@@ -69,8 +72,8 @@ Colori: utilizzo di colori con sfumature per visualizzare meglio la priorità.
 
 Persistenza Dati:
 " function saveInLocalStorage() {
-  localStorage.setItem('issues', JSON.stringify(issues));
-} "
+   localStorage.setItem('issues', JSON.stringify(issues));
+   } "
 
 Flusso Kanban (Spostamento):
 " issues[index].position = issue.position + 1; // Avanza di uno stato "
