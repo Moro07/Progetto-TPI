@@ -13,6 +13,7 @@ Creato da degli studenti dell'[itis Castelli](https://www.iiscastelli.edu.it/Pag
 
 ### Progettazione
 Il sistema fa riferimento a:
+
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Abstract_Kanban_Board.svg/330px-Abstract_Kanban_Board.svg.png)
 
 Architettura:
@@ -89,6 +90,7 @@ Pubblicazione repository su [Git Hub](https://en.wikipedia.org/wiki/GitHub)
 
 ### Manutenzione ed evoluzione
 Futuri aggiornamenti:
+
 Modifica Issue: Implementare la possibilità di modificare il titolo, la descrizione o la priorità di una issue già creata (non solo spostarla o eliminarla).
 Filtri Avanzati: Aggiungere la possibilità di filtrare le issue per priorità o per data di creazione.
 Creazione database: implementare un database, per abilitare la persistenza multi-utente e la collaborazione in tempo reale.
