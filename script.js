@@ -9,7 +9,6 @@ const search = document.getElementById('search');
 const form = document.getElementById('form');
 const formSearch = document.getElementById('formSearch');
 const btnHome = document.getElementById('home');
-const closeSearchModal = document.getElementById('closeSearchModal');
 let i = 0;
 let id = 0;
 let position = 1;
@@ -45,6 +44,7 @@ closeModalBtn.addEventListener('click', () => {
   document.getElementById('desc').value = '';
 });
 
+// Chiudi modale cliccando fuori
 window.addEventListener('click', (e) => {
   if(e.target === modal) {
     modal.classList.add('hidden');
@@ -60,6 +60,7 @@ closeSearch.addEventListener('click', () => {
   formSearch.reset();
 });
 
+// Chiudi ricerca cliccando fuori
 window.addEventListener('click', (e) => {
   if(e.target === search) {
     search.classList.add('hidden');
@@ -89,8 +90,8 @@ btnSend.addEventListener('click', () => {
   const priority = document.getElementById('priority').value;
   const description = document.getElementById('desc').value;
   if(!name || !title || !priority || !description){
-    alert("Per favore, compila tutti i campi.");
-    return;
+     alert("Per favore, compila tutti i campi.");
+     return;
   }
   issues.push({ name, title, priority, description, position, id });
   backlog++;
@@ -155,9 +156,10 @@ function updateKeyAfterRemove(issue){
 document.addEventListener('DOMContentLoaded', () => {
   initializeCounters();
   insertCard();
-});
-
-formSearch.addEventListener('submit', (e) => {
+  
+  const closeSearchModal = document.getElementById('closeSearchModal');
+  
+  formSearch.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const name = document.getElementById('nameSearch').value.trim();
@@ -207,6 +209,8 @@ formSearch.addEventListener('submit', (e) => {
       alert("Nessuna issue trovata con i criteri inseriti.");
     }
   }
+});
+
 function saveInLocalStorage() {
   localStorage.setItem('issues', JSON.stringify(issues));
 }
