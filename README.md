@@ -1,9 +1,6 @@
 # Kanban board
-## Stakeholder
-Creato da degli studenti dell'[itis Castelli](https://www.iiscastelli.edu.it/Pager.aspx?Page=mainpage) per un'ipotetica impresa
 
-## Fasi del processo:
-### Analisi dei requisiti
+## Analisi dei requisiti
 - Funzionali: Questo sistema deve offrire la categorizzazione per priorità dei processi elaborati dall'impresa, deve permettere di creare delle issue specificando titolo, nome, priorità (bassa, media, alta e critica) e descrizione, con la possibilità spostarle tra le colonne (backlog, in progress, review e done) o eliminarle, e di vedere tutte le issue create organizzate per stato. Il sistema deve tenere traccia del numero di issue in ciascuna colonna, all'utente deve essere permesso di poter cercare tra le issue in base al titolo o al nome e in un modulo dedicato devono apparire le issue ricercate. Il sistema deve salvare automaticamente le issue create e i loro stati nella memoria locale, al riavvio della pagina il sistema deve ricaricare le issue salvate.
 - Non funzionali: L'interfaccia deve essere intuitiva e facile da usare: con bottoni ben visibili per spostare o eliminare delle issue, con una navbar sottostante. Il sistema deve essere responsive consentendo così l'utilizzo da telefono. Il caricamento iniziale deve avvenire in tempi accettabili e lo spostamento tra colonne deve essere immediato.
 - Di dominio: Il sistema deve aderire al principio visivo di un flusso di lavoro pull (Kanban) con stati definiti (le quattro colonne). segue il modello: [Kanban board](https://en.wikipedia.org/wiki/Kanban_board)
