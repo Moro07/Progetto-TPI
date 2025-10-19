@@ -47,10 +47,10 @@ Il sistema gestisce le issue, per ogni issue si conosce:
 ### Implementazione
 
 1. HTML: Struttura e Contenitori 
+
 L'HTML definisce lo scheletro dell'applicazione, stabilendo i punti di iniezione del codice JavaScript e rispettando il requisito di visualizzazione in colonne:
 
 Colonne Kanban: Sono stati definiti i div contenitori per ogni stato:
-
 " <div id="card1"></div> <div id="card4"></div> "
 
 Bottoni invia:
