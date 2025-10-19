@@ -44,8 +44,6 @@ Il sistema gestisce le issue, per ogni issue si conosce:
 |position| Intager [1-4] | Indica la colonna sulla quale si trova la issue |
 
 
-
-
 ### Implementazione
 
 1. HTML: Struttura e Contenitori 
@@ -88,9 +86,3 @@ Modifica Issue: Implementare la possibilità di modificare il titolo, la descriz
 Filtri Avanzati: Aggiungere la possibilità di filtrare le issue per priorità o per data di creazione.
 Creazione database: implementare un database, per abilitare la persistenza multi-utente e la collaborazione in tempo reale.
 Autenticazione: Implementare un sistema di login/logout per distinguere i creatori delle issue e permettere la collaborazione tra team.
-
-### Distribuzione
-Pubblicazione repository su [Git Hub](https://en.wikipedia.org/wiki/GitHub)
-
-### Manutenzione ed evoluzione
-Utilizzo di un database in futuro
