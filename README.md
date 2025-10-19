@@ -15,19 +15,19 @@ Creato da degli studenti dell'[itis Castelli](https://www.iiscastelli.edu.it/Pag
 Il sistema fa riferimento a:
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Abstract_Kanban_Board.svg/330px-Abstract_Kanban_Board.svg.png)
 
-####Architettura:
+Architettura:
 1. Interfaccia utente UI: Responsabile dell'interazione con l'utente e della visualizzazione dei dati. Tecnologia: HTML, Tailwind CSS, Flowbite.
 2. Logica: Gestisce il flusso del sistema, l'interazione tra i dati e l'interfaccia. Tecnologia: Javascript.
 3. Persistenza dati: Gestisce la memorizzazione e il recupero dei dati. tecnologia: Javascript (local Storage).
 
-####Comportamento issue:
+Comportamento issue:
 
 Creazione: Ogni nuova issue creata viene posizionata nella colonna Backlog (position = 1).
 Avanzamento/Ritorno: L'utente usa i bottoni sulla card per aumentare (moveIssue) o diminuire (moveIssueBack) il valore di position, spostando la issue tra le colonne.
 Salvataggio: Ogni volta che si crea, si sposta o si elimina una issue, l'intera lista viene salvata immediatamente nel localStorage per mantenere la persistenza.
 Eliminazione: L'issue viene rimossa dall'array dei dati e dalla visualizzazione.
 
-####Comportamento ricerca:
+Comportamento ricerca:
 Inizio: L'utente apre il modulo di ricerca.
 Esecuzione: Dopo l'invio del form, la funzione find() filtra l'array issues in memoria in base a titolo o nome.
 Visualizzazione: Se vengono trovati risultati, questi sono formattati come card e visualizzati in un modulo dedicato.
@@ -50,29 +50,33 @@ Il sistema gestisce le issue, per ogni issue si conosce:
 L'HTML definisce lo scheletro dell'applicazione, stabilendo i punti di iniezione del codice JavaScript e rispettando il requisito di visualizzazione in colonne:
 
 Colonne Kanban: Sono stati definiti i div contenitori per ogni stato:
-<div id="card1"></div> <div id="card4"></div>
+" <div id="card1"></div> <div id="card4"></div> "
 
 Bottoni invia:
-<button id="send" ...>Invia</button>
+" <button id="send" ...>Invia</button> "
+
 
 2. Grafica: Tailwind CSS e FlowBite
+   
 L'uso della libreria Tailwind CSS ha permesso di implementare il design responsive e l'usabilità.
 Layout Responsivo:
-<div class="w-full sm:w-1/6 ...">...</div>
+" <div class="w-full sm:w-1/6 ...">...</div> "
 Colori: utilizzo di colori con sfumature per visualizzare meglio la priorità.
-<span class="bg-red-400 ... text-red-900">Critica</span>
+" <span class="bg-red-400 ... text-red-900">Critica</span> "
+
 
 3. JavaScript: Logica e Persistenza Dati 
 
 Persistenza Dati:
-function saveInLocalStorage() {
+" function saveInLocalStorage() {
   localStorage.setItem('issues', JSON.stringify(issues));
-}
+} "
+
 Flusso Kanban (Spostamento):
-issues[index].position = issue.position + 1; // Avanza di uno stato
+" issues[index].position = issue.position + 1; // Avanza di uno stato "
 
 Ricerca: La funzione find() è case-insensitive
-issue.name.toLowerCase() === name.toLowerCase() // Confronto dei nomi
+" issue.name.toLowerCase() === name.toLowerCase() // Confronto dei nomi "
 
 ### Verifica e validazione
 Sono stati eseguiti test su ogni funzione JavaScript per la correttezza, verificando sia la logica Kanban (ad esempio, il movimento position + 1 e i limiti) sia i requisiti di ricerca (funzionamento case-insensitive). La Validazione ha confermato il Responsive Design e la corretta persistenza dei dati da localStorage al riavvio, garantendo che il sistema sia robusto e usabile
