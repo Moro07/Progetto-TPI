@@ -186,8 +186,6 @@ function updateKeyAfterRemove(issue){
   });
 
   function find(name, title){
-    const resultsContainer = document.getElementById('searchResultsContent');
-    resultsContainer.innerHTML = '';
     let containerHTML = '';
 
     let found = false;
