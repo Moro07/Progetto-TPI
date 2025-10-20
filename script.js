@@ -24,6 +24,10 @@ function initializeCounters() {
   review = 0;
   done = 0;
   
+   if (issues.length > 0) {
+    id = Math.max(...issues.map(issue => issue.id)) + 1;
+  }
+
   issues.forEach(issue => {
     switch(issue.position) {
       case 1: backlog++; break;
