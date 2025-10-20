@@ -156,11 +156,6 @@ function updateKeyAfterRemove(issue){
       break;      
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  initializeCounters();
-  insertCard();
-  
   const closeSearchModal = document.getElementById('closeSearchModal');
   
   formSearch.addEventListener('submit', (e) => {
@@ -213,6 +208,10 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("Nessuna issue trovata con i criteri inseriti.");
     }
   }
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeCounters();
+  insertCard();
 });
 
 function saveInLocalStorage() {
