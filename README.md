@@ -41,7 +41,7 @@ Il sistema gestisce le issue, per ogni issue si conosce:
 |title|String| Breve titolo della issue |
 |name| String | Nome della issue|
 |priority | String |Priorità della issue|
-|description| String |descrizione della issue|
+|description| String |Descrizione della issue|
 |position| Intager [1-4] | Indica la colonna sulla quale si trova la issue |
 
 
@@ -52,22 +52,21 @@ Il sistema gestisce le issue, per ogni issue si conosce:
 L'HTML definisce lo scheletro dell'applicazione, stabilendo i punti di iniezione del codice JavaScript e rispettando il requisito di visualizzazione in colonne:
 
 Colonne Kanban: Sono stati definiti i div contenitori per ogni stato:
-" <div id="card1"></div> <div id="card4"></div> "
+```<div id="card1"></div> <div id="card4"></div> ```
 
 Bottoni invia:
-" <button id="send" ...>Invia</button> "
+```<button id="send" ...>Invia</button>```
 
 
 2. Grafica: Tailwind CSS e FlowBite
    
 L'uso della libreria Tailwind CSS ha permesso di implementare il design responsive e l'usabilità.
-Layout Responsivo:
+Layout Responsive:
 
-" <div class="w-full sm:w-1/6 ...">...</div> "
+```<div class="w-full sm:w-1/6 ...">...</div> ```
 
 Colori: utilizzo di colori con sfumature per visualizzare meglio la priorità.
-" <span class="bg-red-400 ... text-red-900">Critica</span> "
-
+``` <span class="bg-red-400 ... text-red-900">Critica</span> ```
 
 3. JavaScript: Logica e Persistenza Dati 
 
